@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import Navbar from "./Component/Navbar";
+import Products from "./Component/Products";
 
 function App() {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar count={count}></Navbar>
+      <br />
+      <h1 className="text-center text-primary mt-5">All Products</h1>
+      <Products count={count} setCount={setCount}></Products>
     </div>
   );
 }
